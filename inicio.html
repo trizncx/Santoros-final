@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - Santoro's</title>
+    <link rel="stylesheet" href="css/sla.css">
+    <link rel="stylesheet" href="css/admin-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="inicio.html">Santoro's Admin</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">SITE PRINCIPAL</a>
+                </li>
+                <li class="nav-item">
+                    <a href="ClientesServidor.html" class="nav-link">CLIENTES E RESERVAS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-estoque.html" class="nav-link">ESTOQUE</a>
+                </li>
+                <li class="nav-item">
+                    <a href="estoque.html" class="nav-link">HISTÓRICO</a>
+                </li>
+                   <li class="nav-item">
+                    <a href="inicio.html" class="nav-link active">DASHBOARD</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link logout-btn" id="adminLogoutBtn">Sair</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Admin Content -->
+    <div class="admin-page">
+        <div class="container">
+            <!-- Admin Header -->
+            <div class="admin-header">
+                <h1><i class="fas fa-tachometer-alt"></i> Painel Administrativo</h1>
+                <p>Bem-vindo ao sistema de gerenciamento do Santoro's</p>
+            </div>
+
+            <!-- Admin Profile -->
+            <div class="admin-profile">
+                <h3>Informações do Administrador</h3>
+                <div class="admin-profile-info">
+                    <div class="admin-profile-item">
+                        <label>Nome:</label>
+                        <span id="adminName">Carregando...</span>
+                    </div>
+                    <div class="admin-profile-item">
+                        <label>Email:</label>
+                        <span id="adminEmail">Carregando...</span>
+                    </div>
+                    <div class="admin-profile-item">
+                        <label>Função:</label>
+                        <span id="adminRole" class="role-badge">Carregando...</span>
+                    </div>
+                    <div class="admin-profile-item">
+                        <label>Último Login:</label>
+                        <span id="adminLastLogin">Carregando...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions-section">
+                <h2>Ações Rápidas</h2>
+                <div class="quick-actions-grid">                    
+                    <a href="admin-estoque.html" class="quick-action-card">
+                        <div class="quick-action-icon">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <div class="quick-action-content">
+                            <h3>Controle de Estoque</h3>
+                            <p>Gerenciar itens do estoque e fornecedores</p>
+                        </div>
+                    </a>
+                    
+                    <a href="ClientesServidor.html" class="quick-action-card">
+                        <div class="quick-action-icon">
+                            <i class="fas fa-list"></i>
+                        </div>
+                        <div class="quick-action-content">
+                            <h3>Clientes e Reservas</h3>
+                            <p>Gerenciar as reservas e os clientes</p>
+                        </div>
+                    </a>
+
+                    <a href="estoque.html" class="quick-action-card">
+                        <div class="quick-action-icon">
+                            <i class="fas fa-list"></i>
+                        </div>
+                        <div class="quick-action-content">
+                            <h3>Histórico do Estoque</h3>
+                            <p>Veja o Histórico de saída e entrada do estoque</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- System Status -->
+            <div class="system-status-section">
+                <h2>Status do Sistema</h2>
+                <div class="status-grid">
+                    <div class="status-item">
+                        <div class="status-indicator status-online"></div>
+                        <div class="status-info">
+                            <h4>Servidor</h4>
+                            <p>Online</p>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-indicator status-online"></div>
+                        <div class="status-info">
+                            <h4>Banco de Dados</h4>
+                            <p>Conectado</p>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-indicator status-online"></div>
+                        <div class="status-info">
+                            <h4>Sistema de Reservas</h4>
+                            <p>Funcionando</p>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-indicator status-online"></div>
+                        <div class="status-info">
+                            <h4>Controle de Estoque</h4>
+                            <p>Ativo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Section -->
+            <div class="security-section">
+                <h3>Segurança e Acesso</h3>
+                <div class="security-actions">
+                    <button class="btn btn-success" onclick="openRegisterAdminModal()">
+                        <i class="fas fa-user-plus"></i> Registrar Administrador
+                    </button>
+                    <button class="btn btn-primary" onclick="viewLogs()">
+                        <i class="fas fa-list"></i> Ver Logs
+                    </button>
+                    <button class="btn btn-danger" onclick="confirmLogout()">
+                        <i class="fas fa-sign-out-alt"></i> Sair do Sistema
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Santoro's Italian Restaurant - Painel Administrativo</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar se é admin
+            const session = localStorage.getItem('userSession');
+            
+            if (!session) {
+                alert('Acesso negado. Faça login como administrador.');
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            const userData = JSON.parse(session);
+            
+            if (!userData.user || userData.user.type !== 'admin') {
+                alert('Acesso negado. Apenas administradores podem acessar esta página.');
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            console.log('👨‍💼 Admin logado:', userData.user);
+            
+            // Exibir informações do admin
+            displayAdminInfo(userData.user);
+            
+            // Configurar logout
+            const logoutBtn = document.getElementById('adminLogoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    confirmLogout();
+                });
+            }
+
+            // Configurar formulário de registro de admin
+            const registerForm = document.getElementById('registerAdminForm');
+            if (registerForm) {
+                registerForm.addEventListener('submit', handleAdminRegistration);
+            }
+        });
+
+        async function handleAdminRegistration(e) {
+            e.preventDefault();
+            
+            console.log('📝 Iniciando registro de administrador...');
+            
+            const formData = new FormData(e.target);
+            const adminData = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                password: formData.get('password'),
+                role: formData.get('role')
+            };
+            
+            console.log('📋 Dados do admin:', { ...adminData, password: '[HIDDEN]' });
+            
+            try {
+                const session = localStorage.getItem('userSession');
+                if (!session) {
+                    alert('Sessão expirada. Faça login novamente.');
+                    return;
+                }
+                
+                const userData = JSON.parse(session);
+                const token = userData.token;
+                
+                console.log('📡 Enviando requisição para API...');
+                
+                const response = await fetch('/api/admin/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(adminData)
+                });
+                
+                console.log('📡 Status da resposta:', response.status);
+                
+                const result = await response.json();
+                console.log('📋 Resultado da API:', result);
+                
+                if (result.success) {
+                    alert('Administrador registrado com sucesso!');
+                    closeRegisterAdminModal();
+                } else {
+                    alert('Erro ao registrar administrador: ' + result.message);
+                }
+            } catch (error) {
+                console.error('❌ Erro ao registrar administrador:', error);
+                alert('Erro interno. Tente novamente.');
+            }
+        }
+        
+        function displayAdminInfo(admin) {
+            document.getElementById('adminName').textContent = admin.name;
+            document.getElementById('adminEmail').textContent = admin.email;
+            
+            const roleElement = document.getElementById('adminRole');
+            roleElement.textContent = admin.role === 'super_admin' ? 'Super Administrador' : 'Administrador';
+            roleElement.className = `role-badge role-${admin.role}`;
+            
+            // Último login (se disponível)
+            if (admin.last_login) {
+                const lastLogin = new Date(admin.last_login);
+                document.getElementById('adminLastLogin').textContent = lastLogin.toLocaleString('pt-BR');
+            } else {
+                document.getElementById('adminLastLogin').textContent = 'Primeiro acesso';
+            }
+        }
+        
+        function showComingSoon() {
+            alert('Esta funcionalidade estará disponível em breve!');
+        }
+        
+        function changePassword() {
+            alert('Funcionalidade de alteração de senha será implementada em breve.');
+        }
+        
+        function viewLogs() {
+            alert('Visualização de logs será implementada em breve.');
+        }
+        
+        function confirmLogout() {
+            if (confirm('Tem certeza que deseja sair do painel administrativo?')) {
+                localStorage.removeItem('userSession');
+                alert('Logout realizado com sucesso!');
+                window.location.href = 'login.html';
+            }
+        }
+
+        function openRegisterAdminModal() {
+            document.getElementById('registerAdminModal').style.display = 'block';
+        }
+
+        function closeRegisterAdminModal() {
+            document.getElementById('registerAdminModal').style.display = 'none';
+            document.getElementById('registerAdminForm').reset();
+        }
+
+        // Handle admin registration form
+        
+    </script>
+    
+    <style>
+        .quick-actions-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .quick-actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .quick-action-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .quick-action-card:hover {
+            border-color: #b91c1c;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(185, 28, 28, 0.1);
+        }
+        
+        .quick-action-icon {
+            font-size: 2rem;
+            color: #b91c1c;
+            min-width: 60px;
+        }
+        
+        .quick-action-content h3 {
+            margin: 0 0 0.5rem 0;
+            color: #1f2937;
+        }
+        
+        .quick-action-content p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+        
+        .coming-soon {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: #fbbf24;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .system-status-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .status-online {
+            background: #10b981;
+        }
+        
+        .status-offline {
+            background: #ef4444;
+        }
+        
+        .status-info h4 {
+            margin: 0 0 0.25rem 0;
+            font-size: 0.875rem;
+            color: #1f2937;
+        }
+        
+        .status-info p {
+            margin: 0;
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        .modal {
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: #1f2937;
+        }
+
+        .close {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6b7280;
+        }
+
+        .close:hover {
+            color: #374151;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+            padding: 0 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #b91c1c;
+            box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.1);
+        }
+
+        .form-actions {
+            padding: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-success {
+            background-color: #10b981;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #059669;
+        }
+
+        .btn-secondary {
+            background-color: #6b7280;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #4b5563;
+        }
+    </style>
+
+    <!-- Modal de Registro de Administrador -->
+    <div id="registerAdminModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Registrar Novo Administrador</h3>
+                <span class="close" onclick="closeRegisterAdminModal()">&times;</span>
+            </div>
+            <form id="registerAdminForm">
+                <div class="form-group">
+                    <label for="adminName">Nome Completo:</label>
+                    <input type="text" id="adminName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="adminEmail">Email:</label>
+                    <input type="email" id="adminEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="adminPassword">Senha:</label>
+                    <input type="password" id="adminPassword" name="password" required minlength="8">
+                </div>
+                <div class="form-group">
+                    <label for="adminRole">Cargo:</label>
+                    <select id="adminRole" name="role" required>
+                        <option value="admin">Administrador</option>
+                        <option value="super_admin">Super Administrador</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" onclick="closeRegisterAdminModal()" class="btn btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Registrar Administrador</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
